@@ -2,34 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Healing Tales - Login</title>
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="style1.css">
+  <title>Healing Tails - Login</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <div class="auth-wrapper">
 
-  <!-- LEFT -->
+  <!-- LEFT SIDE (Emotional Section) -->
   <div class="auth-left">
     <h1>🌿 Healing Begins Here</h1>
     <p>
-      A safe space where you can share, reflect, and grow —
+      A safe space where you can share, reflect, and grow —  
       anonymously, peacefully, and without judgment.
     </p>
   </div>
 
-  <!-- RIGHT -->
+  <!-- RIGHT SIDE (Form) -->
   <div class="auth-right">
 
     <div class="auth-card">
       <h2 id="title">Welcome Back</h2>
       <p class="subtitle">Take a breath. You’re safe here.</p>
 
-      <input id="email" type="email" placeholder="Email">
-      <input id="password" type="password" placeholder="Password">
+      <input type="email" placeholder="Email">
+      <input type="password" placeholder="Password">
 
       <button onclick="handleAuth()">Continue</button>
 
@@ -45,32 +42,20 @@
 <script>
 let isLogin = true;
 
-// Switch between login/register
 function switchMode() {
   isLogin = !isLogin;
 
-  document.getElementById("title").innerText =
+  document.getElementById("title").innerText = 
     isLogin ? "Welcome Back" : "Create Your Space";
 
-  document.querySelector(".switch").innerText =
-    isLogin
-      ? "Don’t have an account? Register"
-      : "Already have an account? Login";
+  document.querySelector(".switch").innerText = 
+    isLogin ? "Don’t have an account? Register" : "Already have an account? Login";
 }
 
-// Handle button click
 function handleAuth() {
-  if (isLogin) {
-    login();
-  } else {
-    register();
-  }
+  alert(isLogin ? "Logged in successfully 💚" : "Registered successfully 🌿");
 }
 </script>
-
-<!-- SCRIPTS -->
-<script src="js/api.js"></script>
-<script src="js/auth.js"></script>
 
 </body>
 </html>
