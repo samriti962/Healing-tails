@@ -2,74 +2,102 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Healing Tales</title>
 
-  <!-- CSS -->
+  <!-- ✅ FAVICON -->
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <title>Healing Tails</title>
   <link rel="stylesheet" href="style.css">
-
-  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
+<!-- TOP BAR -->
+<div class="topbar">
+  <h2>🌿 Healing Tails</h2>
+  <button onclick="goToPage('login.html')">Login / Register</button>
+</div>
+
 <div class="layout">
 
   <!-- Sidebar -->
   <div class="sidebar">
-    <h2>🌿 Healing Tales</h2>
-
     <ul>
       <li class="active">🏠 Home</li>
-      <li onclick="goToSpaces()">👥 Space</li>
-      <li>📓 Journal</li>
+      <li>👥 Community</li>
+      <li>✉️ Inbox</li>
       <li>😊 Mood Tracker</li>
       <li>🎯 Activities</li>
-      <li onclick="goToProfile()">👤 Profile</li>
+      <li onclick="goToPage('settings.html')">⚙️ Settings</li>
     </ul>
   </div>
 
-  <!-- Main -->
+  <!-- MAIN SECTION -->
   <div class="main">
 
     <div class="welcome">
-      <h3>Good Morning 👋</h3>
-      <h1>Welcome back, <span id="username">Loading...</span> 🌿</h1>
+      <h3 id="greeting">Good Morning 👋</h3>
+      <h1>Welcome back, how’s your mind today?</h1>
       <input placeholder="Search...">
     </div>
 
-    <!-- Mood -->
+    <!-- MOOD -->
     <div class="card">
       <h3>Daily Mood</h3>
 
       <div class="moods">
-        <div class="mood red" onclick="logMood('angry')">😡</div>
-        <div class="mood orange" onclick="logMood('sad')">😟</div>
-        <div class="mood yellow" onclick="logMood('neutral')">😐</div>
-        <div class="mood green" onclick="logMood('happy')">😊</div>
-        <div class="mood darkgreen" onclick="logMood('excited')">😍</div>
+        <button class="mood red" onclick="selectMood(this)">😡</button>
+        <button class="mood orange" onclick="selectMood(this)">😟</button>
+        <button class="mood yellow" onclick="selectMood(this)">😐</button>
+        <button class="mood green" onclick="selectMood(this)">😊</button>
+        <button class="mood darkgreen" onclick="selectMood(this)">😍</button>
       </div>
 
-      <p id="streak"></p>
+      <p id="selectedMoodText" style="margin-top:10px;"></p>
     </div>
 
-    <!-- Activities -->
+    <!-- ACTIVITIES -->
     <div class="activities">
-      <div class="activity"><h4>🧘 Yoga</h4><p>Relax your body</p></div>
-      <div class="activity"><h4>📓 Journal</h4><p>Write your thoughts</p></div>
-      <div class="activity"><h4>🎵 Music Therapy</h4><p>Calm your mind</p></div>
-      <div class="activity"><h4>📚 Warm Book</h4><p>Feel comfort in reading</p></div>
+
+      <div class="activity">
+        <img src="https://via.placeholder.com/150" alt="Yoga">
+        <h4>🧘 Yoga</h4>
+        <p>Relax your body</p>
+        <button onclick="goToActivity('yoga')">Know More</button>
+      </div>
+
+      <div class="activity">
+        <img src="https://via.placeholder.com/150" alt="Journal">
+        <h4>📓 Journal</h4>
+        <p>Write your thoughts</p>
+        <button onclick="goToActivity('journal')">Know More</button>
+      </div>
+
+      <div class="activity">
+        <img src="https://via.placeholder.com/150" alt="Music Therapy">
+        <h4>🎵 Music Therapy</h4>
+        <p>Calm your mind</p>
+        <button onclick="goToActivity('music')">Know More</button>
+      </div>
+
+      <div class="activity">
+        <img src="https://via.placeholder.com/150" alt="Book">
+        <h4>📚 Warm Book</h4>
+        <p>Feel comfort in reading</p>
+        <button onclick="goToActivity('book')">Know More</button>
+      </div>
+
     </div>
 
   </div>
 
-  <!-- Right Panel -->
+  <!-- RIGHT PANEL -->
   <div class="right">
 
     <div class="box">
       <h4>Recommended</h4>
       <p>🧘 5 Min Breathing</p>
-      <p>🎵 Mood Playlist</p>
     </div>
 
     <div class="box">
@@ -82,65 +110,37 @@
     <div class="box">
       <h4>Write your feelings</h4>
 
-      <textarea id="postContent" placeholder="Share anonymously..."></textarea>
-      <button onclick="createPost()">Post</button>
+      <div class="chat-input-box">
+        <input id="feelingInput" placeholder="Share anonymously...">
+        <button class="send-btn" onclick="sendFeeling()">➤</button>
+      </div>
 
-      <div id="posts"></div>
+      <p id="feelingMsg"></p>
     </div>
 
   </div>
 
 </div>
 
-<!-- 🔐 AUTH CHECK -->
-<script>
-if (!localStorage.getItem("token")) {
-  window.location.href = "login.html";
-}
-</script>
+<!-- FLOATING BUTTON -->
+<div class="floating-btn" onclick="openCreateCommunity()">+</div>
 
-<!-- 🔗 NAVIGATION -->
-<script>
-function goToSpaces() {
-  window.location.href = "spaces.html";
-}
+<!-- CHATBOT BUTTON -->
+<div class="chatbot-btn" onclick="toggleChat()">💬</div>
 
-function goToProfile() {
-  window.location.href = "profile.html";
-}
-</script>
+<!-- CHATBOX -->
+<div id="chatbox" class="chatbox hidden">
+  <div class="chat-header">Assistant</div>
 
-<!-- 👤 LOAD USER -->
-<script>
-const BASE_URL = "http://localhost:5000/api";
+  <div id="chat-messages"></div>
 
-async function loadUser() {
-  const token = localStorage.getItem("token");
+  <div class="chat-input-box">
+    <input id="chat-input" placeholder="Ask something...">
+    <button class="send-btn" onclick="sendChat()">➤</button>
+  </div>
+</div>
 
-  try {
-    const res = await fetch(`${BASE_URL}/users/me`, {
-      headers: {
-        "Authorization": "Bearer " + token
-      }
-    });
-
-    const data = await res.json();
-
-    document.getElementById("username").innerText = data.anonymousName;
-
-  } catch (err) {
-    console.error("Error loading user:", err);
-  }
-}
-
-loadUser();
-</script>
-
-<!-- SCRIPTS -->
-<script src="js/api.js"></script>
-<script src="js/auth.js"></script>
-<script src="js/posts.js"></script>
-<script src="js/mood.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>
