@@ -1,4 +1,4 @@
-* { 
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -7,28 +7,49 @@
 
 body {
   background: #E8F0E6;
-  color: #344E41;
+  overflow-x: hidden;
 }
 
-/* Layout */
+/* =========================
+   TOP BAR
+========================= */
+.topbar {
+  background: #A3B18A;
+  color: white;
+  padding: 15px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topbar button {
+  background: #344E41;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.topbar button:hover {
+  opacity: 0.9;
+}
+
+/* =========================
+   MAIN LAYOUT
+========================= */
 .layout {
   display: flex;
-  min-height: 100vh;
+  min-height: calc(100vh - 60px);
 }
 
-/* Sidebar */
+/* SIDEBAR */
 .sidebar {
-  width: 240px;
+  width: 220px;
   background: #A3B18A;
-  padding: 25px;
+  padding: 20px;
   color: white;
-  display: flex;
-  flex-direction: column;
-}
-
-.sidebar h2 {
-  margin-bottom: 30px;
-  font-weight: 600;
 }
 
 .sidebar ul {
@@ -36,85 +57,94 @@ body {
 }
 
 .sidebar li {
-  padding: 12px;
-  border-radius: 12px;
+  padding: 10px;
   margin-bottom: 10px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: 0.2s ease;
+  transition: 0.2s;
 }
 
-.sidebar li.active,
-.sidebar li:hover {
+.sidebar li:hover,
+.sidebar li.active {
   background: #344E41;
 }
 
-/* Main */
+/* MAIN */
 .main {
   flex: 1;
   padding: 25px;
 }
 
-/* Welcome */
-.welcome {
-  background: linear-gradient(135deg, #dfe9d5, #e8f0e6);
-  padding: 25px;
-  border-radius: 20px;
-  margin-bottom: 20px;
+/* RIGHT PANEL */
+.right {
+  width: 260px;
+  padding: 20px;
 }
 
-.welcome h1 {
-  margin-top: 5px;
-  font-weight: 600;
-}
-
-.welcome input {
-  margin-top: 15px;
-  padding: 10px;
-  width: 100%;
-  border-radius: 12px;
-  border: none;
-  outline: none;
-}
-
-/* Card */
-.card {
+/* =========================
+   REUSABLE CARD SYSTEM (FIX)
+========================= */
+.card-ui {
   background: #F6F6F6;
   padding: 20px;
   border-radius: 20px;
   margin-bottom: 20px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 }
 
-/* Mood */
+/* apply base style */
+.welcome,
+.card,
+.box,
+.activity {
+  background: #F6F6F6;
+  padding: 20px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+/* =========================
+   SEARCH
+========================= */
+.welcome input {
+  margin-top: 10px;
+  padding: 10px;
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+/* =========================
+   MOOD SYSTEM
+========================= */
 .moods {
   display: flex;
-  gap: 15px;
+  gap: 10px;
   margin-top: 10px;
 }
 
 .mood {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
+  border: none;
   cursor: pointer;
-  transition: 0.2s ease;
+  font-size: 18px;
+  transition: 0.2s;
 }
 
 .mood:hover {
   transform: scale(1.1);
 }
 
-.red { background: #ffb3b3; }
-.orange { background: #ffd6a5; }
-.yellow { background: #fff3b0; }
-.green { background: #caffbf; }
-.darkgreen { background: #b9fbc0; }
+.mood.active {
+  border: 2px solid #344E41;
+  transform: scale(1.15);
+}
 
-/* Activities GRID */
+/* =========================
+   ACTIVITIES
+========================= */
 .activities {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -122,84 +152,242 @@ body {
 }
 
 .activity {
-  background: #F6F6F6;
-  padding: 25px;
-  border-radius: 20px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-  transition: 0.3s ease;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
 .activity:hover {
-  transform: scale(1.03);
+  transform: translateY(-5px);
 }
 
-/* Right Panel */
-.right {
-  width: 260px;
-  padding: 25px;
-}
-
-/* Boxes */
-.box {
-  background: #F6F6F6;
-  padding: 15px;
-  border-radius: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-}
-
-/* Inputs */
-textarea {
+.activity img {
   width: 100%;
   border-radius: 12px;
-  border: none;
-  padding: 10px;
-  resize: none;
-  outline: none;
-  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-input {
-  outline: none;
-}
-
-/* Buttons */
-button {
+.activity button {
   margin-top: 10px;
-  padding: 10px;
+  padding: 8px 12px;
   border: none;
-  border-radius: 12px;
-  background: #A3B18A;
+  border-radius: 10px;
+  background: #344E41;
   color: white;
   cursor: pointer;
-  transition: 0.2s ease;
 }
 
-button:hover {
-  opacity: 0.9;
+/* =========================
+   FLOATING BUTTON
+========================= */
+.floating-btn {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #344E41;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
-/* Posts */
-#posts .card {
+.floating-btn:hover {
+  transform: translateX(-50%) scale(1.1);
+}
+
+/* =========================
+   CHAT BUTTON
+========================= */
+.chatbot-btn {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: #344E41;
+  color: white;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+  transition: 0.2s;
+}
+
+.chatbot-btn:hover {
+  transform: scale(1.1);
+}
+
+/* =========================
+   CHATBOX
+========================= */
+.chatbox {
+  position: fixed;
+  bottom: 90px;
+  right: 25px;
+  width: 260px;
+  background: white;
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.hidden {
+  display: none;
+}
+
+#chat-messages {
+  max-height: 200px;
+  overflow-y: auto;
+  font-size: 14px;
+}
+
+/* =========================
+   INPUT SYSTEM
+========================= */
+.chat-input-box {
+  display: flex;
+  align-items: center;
+  background: #f0f0f0;
+  border-radius: 25px;
+  padding: 6px 10px;
   margin-top: 10px;
 }
 
-/* Responsive (IMPORTANT) */
+.chat-input-box input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+}
+
+/* SEND BUTTON */
+.send-btn {
+  background: #344E41;
+  color: white;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  margin-left: 6px;
+  transition: 0.2s;
+}
+
+.send-btn:hover {
+  transform: scale(1.1);
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
 @media (max-width: 900px) {
   .layout {
     flex-direction: column;
   }
 
-  .sidebar {
-    width: 100%;
-    height: auto;
-  }
-
+  .sidebar,
   .right {
     width: 100%;
   }
 
   .activities {
     grid-template-columns: 1fr;
+  }
+}
+
+.auth-wrapper {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+/* LEFT SIDE */
+.auth-left {
+  flex: 1;
+  background: #A3B18A;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px;
+}
+
+.auth-left h1 {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+.auth-left p {
+  font-size: 16px;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+/* RIGHT SIDE */
+.auth-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #E8F0E6;
+}
+
+/* LOGIN CARD */
+.auth-card {
+  width: 340px;
+  background: #F6F6F6;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* INPUTS */
+.auth-card input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+/* BUTTON */
+.auth-card button {
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background: #344E41;
+  color: white;
+  cursor: pointer;
+}
+
+/* SWITCH TEXT */
+.switch {
+  text-align: center;
+  font-size: 13px;
+  cursor: pointer;
+  color: #344E41;
+  margin-top: 10px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .auth-wrapper {
+    flex-direction: column;
+  }
+
+  .auth-left {
+    padding: 30px;
+    text-align: center;
   }
 }
