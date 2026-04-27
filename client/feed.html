@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Healing Feed</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="layout">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>🌿 Healing Tales</h2>
+
+    <ul>
+  <li class="active">🏠 Feed</li>
+  <li onclick="goToSpaces()">👥 Community</li>
+  <li onclick="goToHome()">🏠 Dashboard</li>
+
+  <!-- bottom section -->
+  <li onclick="goToProfile()">👤 Profile</li>
+  <li onclick="logout()">🚪 Logout</li>
+</ul>
+  </div>
+
+  <!-- Main Feed -->
+  <div class="main">
+
+    <div class="welcome">
+      <h2>📝 Healing Feed</h2>
+      <p>Share your thoughts anonymously</p>
+    </div>
+
+    <!-- Create Post -->
+    <div class="card">
+      <textarea id="postContent" placeholder="What's on your mind today..."></textarea>
+      <button onclick="createPost()">Post</button>
+    </div>
+
+    <!-- Mood + Streak -->
+    <div class="card">
+      <h3>Your Mood Today</h3>
+
+      <div class="moods">
+        <div class="mood red" onclick="logMood('angry')">😡</div>
+        <div class="mood orange" onclick="logMood('sad')">😟</div>
+        <div class="mood yellow" onclick="logMood('neutral')">😐</div>
+        <div class="mood green" onclick="logMood('happy')">😊</div>
+        <div class="mood darkgreen" onclick="logMood('excited')">😍</div>
+      </div>
+
+      <p id="streak"></p>
+    </div>
+
+    <!-- Posts Feed -->
+    <div id="posts"></div>
+
+  </div>
+
+</div>
+
+<!-- 🔐 AUTH CHECK -->
+<script>
+if (!localStorage.getItem("token")) {
+  window.location.href = "login.html";
+}
+</script>
+
+<!-- 🔗 NAVIGATION -->
+<script>
+function goToSpaces() {
+  window.location.href = "spaces.html";
+}
+
+function goToHome() {
+  window.location.href = "index.html";}
+
+function goToProfile() {
+  window.location.href = "profile.html";
+}
+
+</script>
+
+<!-- SCRIPTS -->
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/posts.js"></script>
+<script src="js/mood.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Healing Tales</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="layout">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>🌿 Healing Tales</h2>
+
+    <ul>
+      <li class="active">🏠 Home</li>
+      <li onclick="goToSpaces()">👥 Space</li>
+      <li>📓 Journal</li>
+      <li>😊 Mood Tracker</li>
+      <li>🎯 Activities</li>
+      <li onclick="goToProfile()">👤 Profile</li>
+    </ul>
+  </div>
+
+  <!-- Main -->
+  <div class="main">
+
+    <div class="welcome">
+      <h3>Good Morning 👋</h3>
+      <h1>Welcome back, <span id="username">Loading...</span> 🌿</h1>
+      <input placeholder="Search...">
+    </div>
+
+    <!-- Mood -->
+    <div class="card">
+      <h3>Daily Mood</h3>
+
+      <div class="moods">
+        <div class="mood red" onclick="logMood('angry')">😡</div>
+        <div class="mood orange" onclick="logMood('sad')">😟</div>
+        <div class="mood yellow" onclick="logMood('neutral')">😐</div>
+        <div class="mood green" onclick="logMood('happy')">😊</div>
+        <div class="mood darkgreen" onclick="logMood('excited')">😍</div>
+      </div>
+
+      <p id="streak"></p>
+    </div>
+
+    <!-- Activities -->
+    <div class="activities">
+      <div class="activity"><h4>🧘 Yoga</h4><p>Relax your body</p></div>
+      <div class="activity"><h4>📓 Journal</h4><p>Write your thoughts</p></div>
+      <div class="activity"><h4>🎵 Music Therapy</h4><p>Calm your mind</p></div>
+      <div class="activity"><h4>📚 Warm Book</h4><p>Feel comfort in reading</p></div>
+    </div>
+
+  </div>
+
+  <!-- Right Panel -->
+  <div class="right">
+
+    <div class="box">
+      <h4>Recommended</h4>
+      <p>🧘 5 Min Breathing</p>
+      <p>🎵 Mood Playlist</p>
+    </div>
+
+    <div class="box">
+      <h4>Communities</h4>
+      <p>Anxiety Support</p>
+      <p>Depression Support</p>
+      <p>Study Stress</p>
+    </div>
+
+    <div class="box">
+      <h4>Write your feelings</h4>
+
+      <textarea id="postContent" placeholder="Share anonymously..."></textarea>
+      <button onclick="createPost()">Post</button>
+
+      <div id="posts"></div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- 🔐 AUTH CHECK -->
+<script>
+if (!localStorage.getItem("token")) {
+  window.location.href = "login.html";
+}
+</script>
+
+<!-- 🔗 NAVIGATION -->
+<script>
+function goToSpaces() {
+  window.location.href = "spaces.html";
+}
+
+function goToProfile() {
+  window.location.href = "profile.html";
+}
+</script>
+
+<!-- 👤 LOAD USER -->
+<script>
+const BASE_URL = "http://localhost:5000/api";
+
+async function loadUser() {
+  const token = localStorage.getItem("token");
+
+  try {
+    const res = await fetch(`${BASE_URL}/users/me`, {
+      headers: {
+        "Authorization": "Bearer " + token
+      }
+    });
+
+    const data = await res.json();
+
+    document.getElementById("username").innerText = data.anonymousName;
+
+  } catch (err) {
+    console.error("Error loading user:", err);
+  }
+}
+
+loadUser();
+</script>
+
+<!-- SCRIPTS -->
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/posts.js"></script>
+<script src="js/mood.js"></script>
+
+</body>
+</html>
