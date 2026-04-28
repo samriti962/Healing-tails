@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Community - Healing Tails</title>
+
+<style>
+/* BASIC */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #E8F0E6;
+}
+
+/* TOPBAR */
+.topbar {
+  background: #A3B18A;
+  color: white;
+  padding: 15px 25px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.topbar button {
+  background: #344E41;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* MAIN */
+.main {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* CARD */
+.card {
+  background: #F6F6F6;
+  padding: 20px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  color: #6c7a6f;
+}
+
+/* TOP INPUT */
+.community-top {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.community-top input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+}
+
+.community-top button {
+  background: #344E41;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* GRID */
+.spaces-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+/* SPACE CARD */
+.space-card {
+  background: #E8F0E6;
+  padding: 15px;
+  border-radius: 15px;
+  transition: 0.2s;
+}
+
+.space-card:hover {
+  transform: translateY(-5px);
+}
+
+.space-card button {
+  margin-top: 10px;
+  background: #344E41;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* POST BOX */
+textarea {
+  width: 100%;
+  height: 90px;
+  border-radius: 12px;
+  border: none;
+  padding: 10px;
+}
+
+.post-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.post-actions input {
+  flex: 1;
+  border-radius: 10px;
+  border: none;
+  padding: 8px;
+}
+
+.post-actions button {
+  background: #344E41;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 10px;
+}
+
+/* FEED */
+.post {
+  background: #F6F6F6;
+  padding: 15px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+}
+
+.user {
+  font-weight: bold;
+  color: #344E41;
+}
+
+.tag {
+  font-size: 12px;
+  color: #6c7a6f;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <h2>🌿 Healing Tails</h2>
+  <button onclick="goBack()">← Back</button>
+</div>
+
+<div class="main">
+
+  <!-- HEADER -->
+  <div class="card">
+    <h2>👥 Safe Spaces</h2>
+    <p class="subtitle">Join a space that understands you.</p>
+
+    <div class="community-top">
+      <input id="spaceSearch" placeholder="Search spaces...">
+      <button onclick="createSpace()">+ Create</button>
+    </div>
+  </div>
+
+  <!-- SPACES -->
+  <div class="card">
+    <h3>Explore Spaces</h3>
+
+    <div id="spaceList" class="spaces-grid">
+      <!-- Dynamic -->
+    </div>
+  </div>
+
+  <!-- POST -->
+  <div class="card">
+    <h3>Share your story</h3>
+
+    <textarea id="postInput" placeholder="Write anonymously... 💚"></textarea>
+
+    <div class="post-actions">
+      <input id="postTags" placeholder="#tags (optional)">
+      <button onclick="addPost()">Post</button>
+    </div>
+  </div>
+
+  <!-- FEED -->
+  <div id="feed"></div>
+
+</div>
+
+<script>
+
+/* BACK */
+function goBack() {
+  window.history.back();
+}
+
+/* SPACES DATA */
+let spaces = ["Anxiety", "Stress", "Breakup"];
+
+/* RENDER SPACES */
+function renderSpaces() {
+  const list = document.getElementById("spaceList");
+  list.innerHTML = "";
+
+  spaces.forEach(space => {
+    list.innerHTML += `
+      <div class="space-card">
+        <h4># ${space}</h4>
+        <p>Safe discussion space</p>
+        <button onclick="joinSpace('${space}')">Join</button>
+      </div>
+    `;
+  });
+}
+
+/* JOIN */
+function joinSpace(space) {
+  alert("Joined " + space + " 💚");
+}
+
+/* CREATE */
+function createSpace() {
+  const name = prompt("Enter space name:");
+
+  if (!name) return;
+
+  spaces.push(name);
+  renderSpaces();
+}
+
+/* ADD POST */
+function addPost() {
+  const text = document.getElementById("postInput").value;
+  const tags = document.getElementById("postTags").value;
+
+  if (!text) {
+    alert("Write something!");
+    return;
+  }
+
+  const feed = document.getElementById("feed");
+
+  const post = `
+    <div class="post">
+      <div class="user">Anonymous</div>
+      <div>${text}</div>
+      <div class="tag">${tags}</div>
+    </div>
+  `;
+
+  feed.innerHTML = post + feed.innerHTML;
+
+  document.getElementById("postInput").value = "";
+  document.getElementById("postTags").value = "";
+}
+
+/* INIT */
+renderSpaces();
+
+</script>
+
+</body>
+</html>

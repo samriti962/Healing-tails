@@ -27,5 +27,5 @@ async function apiRequest(endpoint, method = "GET", body = null) {
   }
 }
 
-// make global
+// 🔥 THIS LINE IS CRITICAL
 window.apiRequest = apiRequest;

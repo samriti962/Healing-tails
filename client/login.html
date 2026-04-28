@@ -3,7 +3,156 @@
 <head>
   <meta charset="UTF-8">
   <title>Healing Tails - Login</title>
+<<<<<<< HEAD
   <link rel="stylesheet" href="style.css">
+=======
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      height: 100vh;
+    }
+
+    .auth-wrapper {
+      display: flex;
+      width: 100%;
+    }
+
+    /* LEFT SIDE */
+    .auth-left {
+      flex: 1;
+      background: #9aa883;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 70px;
+    }
+
+    /* LOGO AREA */
+    .logo-box {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .logo-box img {
+      width: 90px;
+      height: 90px;
+      border-radius: 18px;
+      object-fit: cover;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+    }
+
+    .brand {
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .tagline {
+      font-size: 13px;
+      opacity: 0.85;
+    }
+
+    /* MAIN TEXT */
+    .auth-left h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 40px;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .auth-left p {
+      max-width: 420px;
+      font-size: 16px;
+      line-height: 1.7;
+      opacity: 0.9;
+    }
+
+    /* RIGHT SIDE */
+    .auth-right {
+      flex: 1;
+      background: #eef2ec;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .auth-card {
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(12px);
+      padding: 40px;
+      border-radius: 20px;
+      width: 320px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .auth-card h2 {
+      font-size: 26px;
+      margin-bottom: 5px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: #5f6f65;
+      margin-bottom: 25px;
+    }
+
+    .auth-card input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 12px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      outline: none;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+
+    .auth-card input:focus {
+      border-color: #4a6b57;
+      box-shadow: 0 0 0 2px rgba(74,107,87,0.1);
+    }
+
+    .auth-card button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background: #2f4f4f;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+      margin-top: 5px;
+      transition: 0.2s;
+    }
+
+    .auth-card button:hover {
+      background: #3e6a6a;
+    }
+
+    .switch {
+      margin-top: 15px;
+      font-size: 13px;
+      color: #444;
+      cursor: pointer;
+    }
+
+    .switch:hover {
+      text-decoration: underline;
+    }
+  </style>
+>>>>>>> e3ff946 (Updated UI, added logo, new pages, improved login and dashboard)
 </head>
 <body>
 
@@ -11,19 +160,35 @@
 
   <!-- LEFT SIDE (Emotional Section) -->
   <div class="auth-left">
-    <h1>🌿 Healing Begins Here</h1>
+
+    <!-- LOGO + TEXT -->
+    <div class="logo-box">
+      <img src="logo.png">
+      <div>
+        <div class="brand">Healing Tails</div>
+      </div>
+    </div>
+
+    <h1>Begin Your Healing Journey </h1>
+
     <p>
+<<<<<<< HEAD
       A safe space where you can share, reflect, and grow —  
       anonymously, peacefully, and without judgment.
+=======
+      A calm space to pause, reflect, and grow.<br>
+      Share your thoughts freely — you're safe here.
+>>>>>>> e3ff946 (Updated UI, added logo, new pages, improved login and dashboard)
     </p>
+
   </div>
 
   <!-- RIGHT SIDE (Form) -->
   <div class="auth-right">
 
     <div class="auth-card">
-      <h2 id="title">Welcome Back</h2>
-      <p class="subtitle">Take a breath. You’re safe here.</p>
+      <h2 id="title">Welcome back</h2>
+      <p class="subtitle">Take a breath. You're in a safe space.</p>
 
       <input type="email" placeholder="Email">
       <input type="password" placeholder="Password">
@@ -45,8 +210,13 @@ let isLogin = true;
 function switchMode() {
   isLogin = !isLogin;
 
+<<<<<<< HEAD
   document.getElementById("title").innerText = 
     isLogin ? "Welcome Back" : "Create Your Space";
+=======
+  document.getElementById("title").innerText =
+    isLogin ? "Welcome back 🌿" : "Create your space 🌿";
+>>>>>>> e3ff946 (Updated UI, added logo, new pages, improved login and dashboard)
 
   document.querySelector(".switch").innerText = 
     isLogin ? "Don’t have an account? Register" : "Already have an account? Login";
@@ -57,5 +227,11 @@ function handleAuth() {
 }
 </script>
 
+<<<<<<< HEAD
+=======
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+
+>>>>>>> e3ff946 (Updated UI, added logo, new pages, improved login and dashboard)
 </body>
 </html>
