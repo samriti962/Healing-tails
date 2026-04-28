@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
 
-  <!-- ✅ FAVICON -->
   <link rel="icon" type="image/png" href="favicon.png">
 
   <title>Healing Tails</title>
@@ -16,7 +15,12 @@
 <!-- TOP BAR -->
 <div class="topbar">
   <h2>🌿 Healing Tails</h2>
-  <button onclick="goToPage('login.html')">Login / Register</button>
+
+  <!-- USER AREA (LOGIN / BADGE) -->
+  <div style="display:flex; gap:10px; align-items:center;">
+    <div id="userBadge" class="user-badge hidden"></div>
+    <button id="loginBtn" onclick="goToPage('login.html')">Login / Register</button>
+  </div>
 </div>
 
 <div class="layout">
@@ -107,8 +111,11 @@
       <p>Study Stress</p>
     </div>
 
+    <!-- JOURNAL / FEELINGS -->
     <div class="box">
       <h4>Write your feelings</h4>
+
+      <div id="journalList"></div>
 
       <div class="chat-input-box">
         <input id="feelingInput" placeholder="Share anonymously...">
