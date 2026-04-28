@@ -2,18 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-<<<<<<< HEAD
-
-  <link rel="icon" type="image/png" href="favicon.png">
-
-  <title>Healing Tails</title>
-=======
 
   <link rel="icon" type="image/png" href="favicon.png">
 
   <title>Healing Tales</title>
 
->>>>>>> e3ff946 (Updated UI, added logo, new pages, improved login and dashboard)
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
@@ -31,17 +24,6 @@
 </div>
 <body>
 
-<<<<<<< HEAD
-<!-- TOP BAR -->
-<div class="topbar">
-  <h2>🌿 Healing Tails</h2>
-
-  <!-- USER AREA (LOGIN / BADGE) -->
-  <div style="display:flex; gap:10px; align-items:center;">
-    <div id="userBadge" class="user-badge hidden"></div>
-    <button id="loginBtn" onclick="goToPage('login.html')">Login / Register</button>
-  </div>
-=======
 <!-- 🌿 TOP BAR -->
 <div class="topbar" style="
   display:flex;
@@ -70,7 +52,6 @@
     </span>
   </div>
 
->>>>>>> e3ff946 (Updated UI, added logo, new pages, improved login and dashboard)
 </div>
 
 <div class="layout">
@@ -78,27 +59,6 @@
   <!-- 🧭 SIDEBAR -->
   <div class="sidebar">
     <ul>
-<<<<<<< HEAD
-      <li class="active">🏠 Home</li>
-      <li>👥 Community</li>
-      <li>✉️ Inbox</li>
-      <li>😊 Mood Tracker</li>
-      <li>🎯 Activities</li>
-      <li onclick="goToPage('settings.html')">⚙️ Settings</li>
-    </ul>
-  </div>
-
-  <!-- MAIN SECTION -->
-  <div class="main">
-
-    <div class="welcome">
-      <h3 id="greeting">Good Morning 👋</h3>
-      <h1>Welcome back, how’s your mind today?</h1>
-      <input placeholder="Search...">
-    </div>
-
-    <!-- MOOD -->
-=======
       <li id="nav-home" onclick="go('index.html')">🏠 Home</li>
       <li onclick="go('community.html')">👥 Community</li>
       <li onclick="go('mood.html')">😊 Mood Tracker</li>
@@ -120,7 +80,6 @@
     </div>
 
     <!-- 😊 MOOD -->
->>>>>>> e3ff946 (Updated UI, added logo, new pages, improved login and dashboard)
     <div class="card">
       <h3>Daily Mood</h3>
 
@@ -135,37 +94,6 @@
       <p id="selectedMoodText" style="margin-top:10px;"></p>
     </div>
 
-<<<<<<< HEAD
-    <!-- ACTIVITIES -->
-    <div class="activities">
-
-      <div class="activity">
-        <img src="yoga.png" alt="Yoga">
-        <h4>🧘 Yoga</h4>
-        <p>Relax your body</p>
-        <button onclick="goToActivity('yoga')">Know More</button>
-      </div>
-
-      <div class="activity">
-        <img src="journel.png" alt="Journal">
-        <h4>📓 Journal</h4>
-        <p>Write your thoughts</p>
-        <button onclick="goToActivity('journal')">Know More</button>
-      </div>
-
-      <div class="activity">
-        <img src="music.png" alt="Music Therapy">
-        <h4>🎵 Music Therapy</h4>
-        <p>Calm your mind</p>
-        <button onclick="goToActivity('music')">Know More</button>
-      </div>
-
-      <div class="activity">
-        <img src="book.png" alt="Book">
-        <h4>📚 Warm Book</h4>
-        <p>Feel comfort in reading</p>
-        <button onclick="goToActivity('book')">Know More</button>
-=======
     <!-- 🎯 ACTIVITIES -->
     <div class="activities">
 
@@ -195,18 +123,13 @@
         <h4>📚 Warm Book</h4>
         <p>Feel comfort in reading</p>
         <button onclick="go('activities.html')">Know More</button>
->>>>>>> e3ff946 (Updated UI, added logo, new pages, improved login and dashboard)
       </div>
 
     </div>
 
   </div>
 
-<<<<<<< HEAD
-  <!-- RIGHT PANEL -->
-=======
   <!-- 📌 RIGHT PANEL -->
->>>>>>> e3ff946 (Updated UI, added logo, new pages, improved login and dashboard)
   <div class="right">
 
     <div class="box">
@@ -221,25 +144,15 @@
       <p>Study Stress</p>
     </div>
 
-<<<<<<< HEAD
-    <!-- JOURNAL / FEELINGS -->
-=======
     <!-- 💬 FEELINGS -->
->>>>>>> e3ff946 (Updated UI, added logo, new pages, improved login and dashboard)
     <div class="box">
       <h4>Write your feelings</h4>
 
       <div id="journalList"></div>
 
-<<<<<<< HEAD
-      <div class="chat-input-box">
-        <input id="feelingInput" placeholder="Share anonymously...">
-        <button class="send-btn" onclick="sendFeeling()">➤</button>
-=======
       <div class="feeling-box">
         <input id="feelingInput" placeholder="Share anonymously..." />
         <button onclick="sendFeeling()">➤</button>
->>>>>>> e3ff946 (Updated UI, added logo, new pages, improved login and dashboard)
       </div>
 
       <p id="feelingMsg"></p>
@@ -249,25 +162,6 @@
 
 </div>
 
-<<<<<<< HEAD
-<!-- FLOATING BUTTON -->
-<div class="floating-btn" onclick="openCreateCommunity()">+</div>
-
-<!-- CHATBOT BUTTON -->
-<div class="chatbot-btn" onclick="toggleChat()">💬</div>
-
-<!-- CHATBOX -->
-<div id="chatbox" class="chatbox hidden">
-  <div class="chat-header">Assistant</div>
-
-  <div id="chat-messages"></div>
-
-  <div class="chat-input-box">
-    <input id="chat-input" placeholder="Ask something...">
-    <button class="send-btn" onclick="sendChat()">➤</button>
-  </div>
-</div>
-=======
 <!-- ➕ FLOAT BUTTON -->
 <div class="floating-btn" onclick="openCreateCommunity()">+</div>
 
@@ -309,7 +203,6 @@ document.getElementById("feelingInput").addEventListener("keypress", function(e)
   }
 });
 </script>
->>>>>>> e3ff946 (Updated UI, added logo, new pages, improved login and dashboard)
 
 <script src="script.js"></script>
 
